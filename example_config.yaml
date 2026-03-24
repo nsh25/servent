@@ -1,0 +1,50 @@
+data:
+  csv_path: examples/sample_ohlcv.csv
+  timestamp_col: timestamp
+  timezone: UTC
+spike:
+  min_spike_candles: 2
+  max_spike_candles: 5
+  min_body_to_atr: 0.8
+  min_directional_ratio: 0.7
+  require_at_least_one_gap: true
+  gap_mode: true_gap
+correction:
+  second_leg_mode: simplified_trigger
+  max_bars_after_spike: 6
+  minimum_correction_depth: 0.1
+  require_rejection_confirmation: false
+entry:
+  entry_mode: stop_break
+  stop_reference: pre_spike_origin_candle
+  stop_buffer_ticks: 0.0
+  stop_buffer_atr_fraction: 0.0
+  rr_target: 1.0
+  order_expiry_bars: 3
+scale_in:
+  enable_scale_in: true
+  scale_in_size: 1.0
+filters:
+  enable_htf_trend: false
+  enable_breakout_filter: false
+  enable_channel_edge_filter: false
+  enable_min_spike_strength_filter: false
+  enable_low_volatility_filter: false
+  enable_session_filter: false
+  enable_volume_filter: false
+risk:
+  sizing_mode: fixed_fractional
+  risk_per_trade: 0.01
+  fixed_quantity: 1.0
+  initial_equity: 100000.0
+  commission_per_unit: 0.01
+  slippage_per_unit: 0.0
+  tick_size: 0.01
+  max_open_trades: 1
+  allow_multiple_positions: false
+reporting:
+  output_dir: output
+  save_candidate_setups: true
+  verbose_debug: true
+  save_plots: true
+  candlestick_bars: 80
