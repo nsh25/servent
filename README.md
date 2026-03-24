@@ -143,6 +143,25 @@ Edit `example_config.yaml` or provide another YAML file. The nested configuratio
 - `risk`
 - `reporting`
 
+
+## Walkthrough test
+
+For a step-by-step baseline validation, run the dedicated walkthrough-style unit test after installing dependencies:
+
+```bash
+pytest -q tests/test_walkthrough.py -k walkthrough
+```
+
+That test uses a deterministic synthetic bullish sequence and verifies the entire lifecycle in order:
+1. bullish spike with an internal gap is detected;
+2. the correction satisfies the configured second-leg rule;
+3. the setup survives filters and becomes a pending entry;
+4. the continuation entry fills;
+5. the optional scale-in fills at the 50% add level;
+6. the combined position reaches the take-profit.
+
+This gives you a readable "research walkthrough" test before you branch into more complex parameter sweeps.
+
 ## Inspecting candidate setups
 
 Inspect these files after a run:
